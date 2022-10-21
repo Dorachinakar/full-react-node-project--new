@@ -8,9 +8,7 @@ function addUser(user) {
     const { error, value } = newUser.validateUserSchema().validate(user);
     if (error) reject(error);
     else {
-      const regex = new RegExp(
-        "^(?=.*?[A-Z])(?=.*?[a-z])(?=(.*?[0-9]){4})(?=.*?[#?!@$%^&*-]).{9,9}$"
-      );
+      const regex = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=(.*?[0-9]){4}).{9,9}$");
       let statusRegex = regex.test(newUser.password);
       if (statusRegex) {
         await newUser.hashPassword();
